@@ -1,0 +1,25 @@
+pipeline {
+    any agent
+    steps {
+        step('CheckOut') {
+            echo 'CheckOut'
+            bat git branch:'main', url:'https://github.com/ruchithareddiie/external1'
+        }
+        step('Compile') {
+            echo 'Compile'
+            bat 'javac Hello.java'
+        }
+        step('Run') {
+            echo 'Run'
+            bat 'java Hello'
+        }
+    }
+    post {
+        success {
+            echo 'successful'
+        }
+        failed {
+            echo 'failed'
+        }
+    }
+}
